@@ -1,3 +1,446 @@
-﻿@{
-    Layout = null;
-}
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SEED</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/images/app/favicon.ico" />
+    <link href="~/Content/custom.css" rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/css/plugins/chosen/bootstrap-chosen.css" rel="stylesheet">
+
+    <!-- FooTable -->
+    <link href="~/Content/css/plugins/footable/footable.core.css" rel="stylesheet">
+
+    <link href="~/Content/css/animate.css" rel="stylesheet">
+    <link href="~/Content/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/css/plugins/touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet">
+    <link href="~/Content/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+    <link href="~/Content/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="~/Content/css/style.css" rel="stylesheet">
+
+    <style>
+        .scroll-menu {
+            overflow: auto;
+        }
+
+            .scroll-menu::-webkit-scrollbar {
+                width: 8px;
+                height: 8px;
+                background-color: inherit;
+            }
+
+            .scroll-menu::-webkit-scrollbar-thumb {
+                background-color: #999c9e;
+                border-radius: 3px;
+            }
+
+        .chosen-results {
+            overflow: auto;
+        }
+
+            .chosen-results::-webkit-scrollbar {
+                width: 8px;
+                height: 8px;
+                background-color: inherit;
+            }
+
+            .chosen-results::-webkit-scrollbar-thumb {
+                background-color: #999c9e;
+                border-radius: 3px;
+            }
+
+        .form-control {
+            overflow: auto;
+        }
+
+            .form-control::-webkit-scrollbar {
+                width: 8px;
+                height: 8px;
+                background-color: inherit;
+            }
+
+            .form-control::-webkit-scrollbar-thumb {
+                background-color: #999c9e;
+                border-radius: 3px;
+            }
+
+        body {
+            overflow: auto;
+            height: 100%;
+        }
+
+            body::-webkit-scrollbar {
+                width: 8px;
+                height: 8px;
+                background-color: inherit;
+            }
+
+            body::-webkit-scrollbar-thumb {
+                background-color: #999c9e;
+                border-radius: 3px;
+            }
+
+        .table-responsive {
+            overflow: auto;
+        }
+
+            .table-responsive::-webkit-scrollbar {
+                width: 8px;
+                height: 8px;
+                background-color: inherit;
+            }
+
+            .table-responsive::-webkit-scrollbar-thumb {
+                background-color: #999c9e;
+                border-radius: 3px;
+            }
+
+        .modal {
+            overflow: auto;
+        }
+
+            .modal::-webkit-scrollbar {
+                width: 8px;
+                height: 8px;
+                background-color: inherit;
+            }
+
+            .modal::-webkit-scrollbar-thumb {
+                background-color: #999c9e;
+                border-radius: 3px;
+            }
+
+        .div-small {
+            border: 1px solid #e3e4e4;
+        }
+
+            .div-small > .table {
+                font-size: 11px;
+            }
+
+                .div-small > .table > thead > tr > th,
+                .div-small > .table > tbody > tr > th, .table > tfoot > tr > th,
+                .div-small > .table > thead > tr > td, .table > tbody > tr > td,
+                .div-small > .table > tfoot > tr > td {
+                    padding: 3px 5px 3px 5px;
+                }
+
+        .row-selected {
+            color: #000000;
+        }
+
+            .row-selected > td {
+                background-color: #b0c4de !important;
+            }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element" style="cursor: pointer">
+                            <span style="font-size: 42px; color: #ffffff">Seed</span>
+                        </div>
+                        <div class="logo-element" style="cursor: pointer">
+                            <span style="font-size: 20px; color: #ffffff">Seed</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div id="page-wrapper" style="background-color: #e3e4e4">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary" href="#">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                    </div>
+                    <ul class="nav navbar-top-links navbar-right">
+                        @Html.Action("_EmpresaMenuPartial", "Home", new { @currentUrl = ViewBag.CurrentUrl })
+                        <li id="usrMenu" class="dropdown">
+                            <a class="dropdown-toggle" style="width: 145px" href="#" data-toggle="dropdown">
+                                <i class="fa fa-cog"></i>(@User.Identity.Name)
+                            </a>
+                            <ul id="usrMenu" class="dropdown-menu animated fadeInRight m-t-xs">
+                                <li><a href="@Url.Action("Logout", "Usuario", new { @newUrl = Url.Action("Index", "Home") })"><i class="fa fa-sign-out"></i> Cerrar sesión</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            @RenderBody()
+        </div>
+    </div>
+
+    <!-- Mainly scripts -->
+    <script src="~/Scripts/js/jquery-2.1.1.js"></script>
+    <script src="~/Scripts/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="~/Scripts/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="~/Scripts/js/inspinia.js"></script>
+    <script src="~/Scripts/js/plugins/pace/pace.min.js"></script>
+    <script src="~/Scripts/js/jquery.alphanum.js"></script>
+    <script src="~/Scripts/js/bootstrap-tabcollapse.js"></script>
+    <script src="~/Scripts/js/jquery.responsive-tab.js"></script>
+    <script src="~/Scripts/js/jquery.nested-table.js"></script>
+    <script src="~/Scripts/js/plugins/alasql/alasql.min.js"></script>
+
+    <!-- jQuery UI -->
+    <script src="~/Scripts/js/plugins/jquery-ui/jquery-ui.min.js"></script>
+
+    <!-- FooTable -->
+    <script src="~/Scripts/js/plugins/footable/footable.all.min.js"></script>
+
+    <!-- Peity -->
+    <script src="~/Scripts/js/plugins/peity/jquery.peity.min.js"></script>
+    <script src="~/Scripts/js/demo/peity-demo.js"></script>
+
+    <!-- Chosen -->
+    <script src="~/Scripts/js/plugins/chosen/chosen.jquery.js"></script>
+
+    <!-- TouchSpin -->
+    <script src="~/Scripts/js/plugins/touchspin/jquery.bootstrap-touchspin.min.js"></script>
+
+    <!-- Data picker -->
+    <script src="~/Scripts/js/plugins/datapicker/bootstrap-datepicker.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("body").addClass('fixed-sidebar');
+            $('.sidebar-collapse').slimScroll({
+                height: '100%',
+                railOpacity: 0.9
+            });
+
+            $(".navbar-static-top").removeClass('navbar-static-top').addClass('navbar-fixed-top');
+            $("body").removeClass('boxed-layout');
+            $("body").addClass('fixed-nav').addClass('fixed-nav-basic');
+        });
+
+        $(window).on("resize", function () {
+            $('.dropdown.open').each(function () {
+                var id = $(this).attr("id");
+                var eOffset = $(this).offset();
+
+                var dropdownMenu = $('.dropdown-menu[id="' + id + '"]');
+
+                dropdownMenu.css({
+                    'top': eOffset.top + $(this).outerHeight(),
+                    'left': eOffset.left
+                });
+            });
+        });
+
+        $(document).on("scroll", function () {
+            $('.dropdown.open').each(function () {
+                var id = $(this).attr("id");
+                var eOffset = $(this).offset();
+
+                var dropdownMenu = $('.dropdown-menu[id="' + id + '"]');
+
+                dropdownMenu.css({
+                    'top': eOffset.top + $(this).outerHeight(),
+                    'left': eOffset.left
+                });
+            });
+        });
+
+        $('.modal').on("scroll", function () {
+            $('.dropdown.open').each(function () {
+                var id = $(this).attr("id");
+                var eOffset = $(this).offset();
+
+                var dropdownMenu = $('.dropdown-menu[id="' + id + '"]');
+
+                dropdownMenu.css({
+                    'top': eOffset.top + $(this).outerHeight(),
+                    'left': eOffset.left
+                });
+            });
+
+            $('.datepicker-dropdown').each(function () {
+                var id = $(this).attr("id");
+                var input = $('input[id="' + id + '"]');
+                var eOffset = input.offset();
+
+                $(this).css({
+                    top: eOffset.top + input.outerHeight()
+                });
+            });
+        });
+
+        $('.table-responsive').on("scroll", function () {
+            $("body").trigger("click");
+        });
+
+        function formatString(val) {
+            var newVal = "" + val;
+            var indexDec = newVal.lastIndexOf(".");
+
+            if (indexDec >= 0) {
+                var entero = newVal.substring(0, indexDec).replace(/,/g, '');
+                var decimal = newVal.substring(indexDec, newVal.length);
+
+                newVal = (entero != "" ? entero.replace(/\B(?=(\d{3})+(?!\d))/g, ',') : "0")
+                    + (decimal != "." ? (decimal.length > 2 ? decimal : decimal + "0") : ".00");
+            }
+            else {
+                var entero = newVal.replace(/,/g, '');
+                newVal = (entero != "" ? entero.replace(/\B(?=(\d{3})+(?!\d))/g, ',') : "0") + ".00";
+            }
+
+            return newVal;
+        }
+
+        function isFirefox() {
+            var userAgent = navigator.userAgent;
+            return ((userAgent.indexOf("Firefox") > -1));
+        }
+
+        function isIE() {
+            var userAgent = navigator.userAgent;
+            return ((userAgent.indexOf("MSIE") > -1) || (userAgent.indexOf("Trident/") > -1) || (userAgent.indexOf("Edge/") > -1));
+        }
+
+        function isMobile() {
+            var userAgent = navigator.userAgent;
+
+            return ((userAgent.match(/Android/i)) || (userAgent.match(/BlackBerry/i)) || (userAgent.match(/iPhone|iPad|iPod/i))
+                || (userAgent.match(/Opera Mini/i)) || (userAgent.match(/IEMobile/i)));
+        }
+
+        function resizeModal(div) {
+            var modal = $(div);
+            var dialog = modal.find('.modal-dialog');
+
+            modal.css('display', 'block');
+            dialog.css("margin-top", Math.max(0, ($(window).height() - dialog.height()) / 2));
+        }
+
+        function resizeTable(div, limit) {
+            var trHead = $(div).find("table > thead > tr");
+            var trBody = $(div).find("table > tbody > tr");
+
+            if (trHead.length > 0 && trBody.length > 0) {
+                var count = trBody.length;
+
+                if (count > limit) {
+                    var height = trHead.eq(0).height();
+
+                    for (var i = 0; i < limit; i++) {
+                        height = height + trBody.eq(i).height();
+                    }
+
+                    $(div).css("height", "100%");
+
+                    var scrollHeight = $(div).height() - $(div + " > table").height();
+                    $(div).css("height", height + scrollHeight);
+                }
+            }
+        }
+
+        function selecRow(table, pos) {
+            $(table + " > tbody > tr").removeClass("row-selected");
+
+            if (pos >= 0) {
+                $(table + " > tbody > tr:eq(" + pos + ")").addClass("row-selected");
+            }
+        }
+
+        function scrollRow(div, pos) {
+            if (pos > 0) {
+                var scrollTop = 0;
+                var count = 0;
+
+                for (var i = 1; i <= pos; i++) {
+                    var trHeight = $(div + " > table > tbody > tr:eq(" + i + ")").height();
+                    scrollTop = scrollTop + trHeight;
+
+                    if (isFirefox() || isIE()) {
+                        count = Math.floor(i / 3);
+                    }
+                }
+
+                scrollTop = scrollTop - count;
+                $(div).scrollTop(scrollTop);
+            }
+            else {
+                $(div).scrollTop(0);
+            }
+        }
+
+        (function () {
+            // hold onto the drop down menu
+            var dropdownMenu;
+
+            // and when you show it, move it to the body
+            $(window).on('show.bs.dropdown', function (e) {
+
+                // grab the menu
+                dropdownMenu = $(e.target).find('.dropdown-menu');
+
+                // detach it and append it to the body
+                $('body').append(dropdownMenu.detach());
+
+                // grab the new offset position
+                var eOffset = $(e.target).offset();
+
+                // make sure to place it where it would normally go (this could be improved)
+                dropdownMenu.css({
+                    'display': 'block',
+                    'top': eOffset.top + $(e.target).outerHeight(),
+                    'left': eOffset.left
+                });
+            });
+
+            // and when you hide it, reattach the drop down, and hide it normally
+            $(window).on('hide.bs.dropdown', function (e) {
+                $(e.target).append(dropdownMenu.detach());
+                dropdownMenu.hide();
+            });
+
+            function reposition() {
+                var modal = $(this);
+                var dialog = modal.find('.modal-dialog');
+
+                modal.css('display', 'block');
+
+                // Dividing by two centers the modal exactly, but dividing by three
+                // or four works better for larger screens.
+                dialog.css("margin-top", Math.max(0, ($(window).height() - dialog.height()) / 2));
+            }
+
+            // Reposition when a modal is shown
+            $('.modal').on('show.bs.modal', reposition);
+
+            // Hack to enable multiple modals by making sure the .modal-open class
+            // is set to the <body> when there is at least one modal open left
+            $('body').on('hidden.bs.modal', function () {
+                if ($('.modal.in').length > 0) {
+                    $('body').addClass('modal-open');
+                }
+            });
+
+            // Reposition when the window is resized
+            $(window).on('resize', function () {
+                $('.modal:visible').each(reposition);
+            });
+        })();
+    </script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -22,6 +23,7 @@
     <IISExpressUseClassicPipelineMode />
     <Use64BitIISExpress />
     <UseGlobalApplicationHostFile />
+    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -45,6 +47,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -161,10 +165,77 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SesionController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\LayoutViewModels.cs" />
+    <Compile Include="Models\SISTEMA\AspNetRoles.cs">
+      <DependentUpon>sistema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SISTEMA\AspNetUserClaims.cs">
+      <DependentUpon>sistema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SISTEMA\AspNetUserLogins.cs">
+      <DependentUpon>sistema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SISTEMA\AspNetUsers.cs">
+      <DependentUpon>sistema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SISTEMA\Empresa.cs">
+      <DependentUpon>sistema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SISTEMA\PersonaBase.cs">
+      <DependentUpon>sistema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SISTEMA\PersonaBaseEmail.cs">
+      <DependentUpon>sistema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SISTEMA\PersonaBaseTelefono.cs">
+      <DependentUpon>sistema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SISTEMA\Privilegio.cs">
+      <DependentUpon>sistema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SISTEMA\Sesion.cs">
+      <DependentUpon>sistema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SISTEMA\SesionEmpresa.cs">
+      <DependentUpon>sistema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SISTEMA\SesionPrivilegio.cs">
+      <DependentUpon>sistema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SISTEMA\sistema.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>sistema.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SISTEMA\sistema.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>sistema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SISTEMA\sistema.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>sistema.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SISTEMA\Usuario.cs">
+      <DependentUpon>sistema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SISTEMA\UsuarioBitacora.cs">
+      <DependentUpon>sistema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SISTEMA\UsuarioEmpresa.cs">
+      <DependentUpon>sistema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SISTEMA\UsuarioPrivilegio.cs">
+      <DependentUpon>sistema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UsuarioViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -181,12 +252,9 @@
     <Content Include="Content\css\plugins\awesome-bootstrap-checkbox\awesome-bootstrap-checkbox.css" />
     <Content Include="Content\css\plugins\blueimp\css\blueimp-gallery.min.css" />
     <Content Include="Content\css\plugins\blueimp\img\error.png" />
-    <Content Include="Content\css\plugins\blueimp\img\error.svg" />
     <Content Include="Content\css\plugins\blueimp\img\loading.gif" />
     <Content Include="Content\css\plugins\blueimp\img\play-pause.png" />
-    <Content Include="Content\css\plugins\blueimp\img\play-pause.svg" />
     <Content Include="Content\css\plugins\blueimp\img\video-play.png" />
-    <Content Include="Content\css\plugins\blueimp\img\video-play.svg" />
     <Content Include="Content\css\plugins\bootstrap-markdown\bootstrap-markdown.min.css" />
     <Content Include="Content\css\plugins\bootstrap-tagsinput\bootstrap-tagsinput.css" />
     <Content Include="Content\css\plugins\bootstrapSocial\bootstrap-social.css" />
@@ -212,7 +280,6 @@
     <Content Include="Content\css\plugins\fonts\glyphicons-halflings-regular-4.html" />
     <Content Include="Content\css\plugins\fonts\glyphicons-halflings-regular.html" />
     <Content Include="Content\css\plugins\fonts\glyphicons-halflings-regulard41d.html" />
-    <Content Include="Content\css\plugins\footable\fonts\footable.svg" />
     <Content Include="Content\css\plugins\footable\footable.core.css" />
     <Content Include="Content\css\plugins\fullcalendar\fullcalendar.css" />
     <Content Include="Content\css\plugins\fullcalendar\fullcalendar.print.css" />
@@ -251,7 +318,6 @@
     <Content Include="Content\css\plugins\nouslider\jquery.nouislider.css" />
     <Content Include="Content\css\plugins\select2\select2.min.css" />
     <Content Include="Content\css\plugins\slick\ajax-loader.gif" />
-    <Content Include="Content\css\plugins\slick\fonts\slick.svg" />
     <Content Include="Content\css\plugins\slick\slick-theme.css" />
     <Content Include="Content\css\plugins\slick\slick.css" />
     <Content Include="Content\css\plugins\steps\jquery.steps.css" />
@@ -259,22 +325,34 @@
     <Content Include="Content\css\plugins\summernote\summernote.css" />
     <Content Include="Content\css\plugins\sweetalert\sweetalert.css" />
     <Content Include="Content\css\plugins\switchery\switchery.css" />
-    <Content Include="Content\css\plugins\textSpinners\spinners.css" />
     <Content Include="Content\css\plugins\toastr\toastr.min.css" />
     <Content Include="Content\css\plugins\touchspin\jquery.bootstrap-touchspin.min.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\font-awesome\css\font-awesome.css" />
     <Content Include="Content\font-awesome\css\font-awesome.min.css" />
-    <Content Include="Content\font-awesome\fonts\fontawesome-webfont3e6e.svg" />
+    <Content Include="Content\font-awesome\fonts\fontawesome-webfonte0a5.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\images\app\favicon.ico" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <EntityDeploy Include="Models\SISTEMA\sistema.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>sistema.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\SISTEMA\sistema.edmx.diagram">
+      <DependentUpon>sistema.edmx</DependentUpon>
+    </Content>
+    <Content Include="Content\css\plugins\blueimp\img\error.svg.tmp" />
+    <Content Include="Content\css\plugins\blueimp\img\play-pause.svg.tmp" />
+    <Content Include="Content\css\plugins\blueimp\img\video-play.svg.tmp" />
     <Content Include="Content\css\plugins\footable\fonts\footable.eot" />
+    <Content Include="Content\css\plugins\footable\fonts\footable.svg.tmp" />
     <Content Include="Content\css\plugins\footable\fonts\footable.ttf" />
     <Content Include="Content\css\plugins\footable\fonts\footable.woff" />
     <Content Include="Content\css\plugins\footable\fonts\footabled41d.eot" />
     <Content Include="Content\css\plugins\slick\fonts\slick.eot" />
+    <Content Include="Content\css\plugins\slick\fonts\slick.svg.tmp" />
     <Content Include="Content\css\plugins\slick\fonts\slick.ttf" />
     <Content Include="Content\css\plugins\slick\fonts\slick.woff" />
     <Content Include="Content\css\plugins\slick\fonts\slickd41d.eot" />
@@ -282,17 +360,27 @@
     <Content Include="Content\css\plugins\summernote\font\summernote6659.ttf" />
     <Content Include="Content\css\plugins\summernote\font\summernote6659.woff" />
     <Content Include="Content\css\plugins\summernote\font\summernoted41d.eot" />
-    <Content Include="Content\font-awesome\fonts\fontawesome-webfont3e6e.eot" />
-    <Content Include="Content\font-awesome\fonts\fontawesome-webfont3e6e.ttf" />
-    <Content Include="Content\font-awesome\fonts\fontawesome-webfont3e6e.woff" />
-    <Content Include="Content\font-awesome\fonts\fontawesome-webfont3e6e.woff2" />
     <Content Include="Content\font-awesome\fonts\fontawesome-webfontd41d.eot" />
+    <Content Include="Content\font-awesome\fonts\fontawesome-webfonte0a5.eot" />
+    <Content Include="Content\font-awesome\fonts\fontawesome-webfonte0a5.ttf" />
+    <Content Include="Content\font-awesome\fonts\fontawesome-webfonte0a5.woff" />
+    <Content Include="Content\font-awesome\fonts\fontawesome-webfonte0a5.woff2" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Content\fonts\glyphicons-halflings-regulard41d.eot" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Models\SISTEMA\sistema.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>sistema.edmx</DependentUpon>
+      <LastGenOutput>sistema.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\SISTEMA\sistema.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>sistema.edmx</DependentUpon>
+      <LastGenOutput>sistema.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -300,6 +388,8 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\js\app\usuario\login.js" />
+    <Content Include="Scripts\js\bootstrap-tabcollapse.js" />
     <Content Include="Scripts\js\bootstrap.js" />
     <Content Include="Scripts\js\bootstrap.min.js" />
     <Content Include="Scripts\js\demo\chartjs-demo.js" />
@@ -310,7 +400,20 @@
     <Content Include="Scripts\js\demo\sparkline-demo.js" />
     <Content Include="Scripts\js\inspinia.js" />
     <Content Include="Scripts\js\jquery-2.1.1.js" />
-    <Content Include="Scripts\js\jquery-3.1.1.min.js" />
+    <Content Include="Scripts\js\jquery-table.footable.js" />
+    <Content Include="Scripts\js\jquery-ui-1.10.4.min.js" />
+    <Content Include="Scripts\js\jquery-ui.custom.min.js" />
+    <Content Include="Scripts\js\jquery.alphanum.js" />
+    <Content Include="Scripts\js\jquery.nested-table.js" />
+    <Content Include="Scripts\js\jquery.responsive-tab.js" />
+    <Content Include="Scripts\js\plugins\alasql\alasql-echo.js" />
+    <Content Include="Scripts\js\plugins\alasql\alasql-md.js" />
+    <Content Include="Scripts\js\plugins\alasql\alasql-prolog.js" />
+    <Content Include="Scripts\js\plugins\alasql\alasql-worker.js" />
+    <Content Include="Scripts\js\plugins\alasql\alasql-worker.min.js" />
+    <Content Include="Scripts\js\plugins\alasql\alasql.fs.js" />
+    <Content Include="Scripts\js\plugins\alasql\alasql.js" />
+    <Content Include="Scripts\js\plugins\alasql\alasql.min.js" />
     <Content Include="Scripts\js\plugins\blueimp\jquery.blueimp-gallery.min.js" />
     <Content Include="Scripts\js\plugins\bootstrap-markdown\bootstrap-markdown.js" />
     <Content Include="Scripts\js\plugins\bootstrap-markdown\markdown.js" />
@@ -378,22 +481,19 @@
     <Content Include="Scripts\js\plugins\pdfjs\pdf.js" />
     <Content Include="Scripts\js\plugins\peity\jquery.peity.min.js" />
     <Content Include="Scripts\js\plugins\preetyTextDiff\jquery.pretty-text-diff.min.js" />
-    <Content Include="Scripts\js\plugins\pwstrength\pwstrength-bootstrap.min.js" />
-    <Content Include="Scripts\js\plugins\pwstrength\zxcvbn.js" />
     <Content Include="Scripts\js\plugins\rickshaw\rickshaw.min.js" />
     <Content Include="Scripts\js\plugins\rickshaw\vendor\d3.v3.js" />
     <Content Include="Scripts\js\plugins\select2\select2.full.min.js" />
     <Content Include="Scripts\js\plugins\slick\slick.min.js" />
     <Content Include="Scripts\js\plugins\slimscroll\jquery.slimscroll.min.js" />
     <Content Include="Scripts\js\plugins\sparkline\jquery.sparkline.min.js" />
-    <Content Include="Scripts\js\plugins\steps\jquery.steps.min.js" />
+    <Content Include="Scripts\js\plugins\staps\jquery.steps.min.js" />
     <Content Include="Scripts\js\plugins\summernote\summernote.min.js" />
     <Content Include="Scripts\js\plugins\sweetalert\sweetalert.min.js" />
     <Content Include="Scripts\js\plugins\switchery\switchery.js" />
     <Content Include="Scripts\js\plugins\tinycon\tinycon.min.js" />
     <Content Include="Scripts\js\plugins\toastr\toastr.min.js" />
     <Content Include="Scripts\js\plugins\topojson\topojson.js" />
-    <Content Include="Scripts\js\plugins\touchpunch\jquery.ui.touch-punch.min.js" />
     <Content Include="Scripts\js\plugins\touchspin\jquery.bootstrap-touchspin.min.js" />
     <Content Include="Scripts\js\plugins\typehead\bootstrap3-typeahead.min.js" />
     <Content Include="Scripts\js\plugins\validate\jquery.validate.min.js" />
@@ -415,9 +515,12 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Usuario\Login.cshtml" />
+    <Content Include="Views\Usuario\Panel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Sesion\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -426,11 +529,19 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\js\plugins\alasql\alasql.d.ts" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">

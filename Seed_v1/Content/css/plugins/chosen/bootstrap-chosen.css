@@ -39,7 +39,8 @@
     padding: 5px 6px; }
 .chosen-container .chosen-results li em {
     background: #feffde;
-    font-style: normal; }
+    font-style: normal; 
+    font-weight: bold}
 .chosen-container .chosen-results li.group-result {
     display: list-item;
     cursor: default;

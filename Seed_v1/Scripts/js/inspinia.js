@@ -1,9 +1,10 @@
 /*
  *
  *   INSPINIA - Responsive Admin Theme
- *   version 2.7
+ *   version 2.6
  *
  */
+
 
 $(document).ready(function () {
 
@@ -15,14 +16,14 @@ $(document).ready(function () {
         $('body').removeClass('body-small')
     }
 
-    // MetisMenu
+    // MetsiMenu
     $('#side-menu').metisMenu();
 
     // Collapse ibox function
     $('.collapse-link').on('click', function () {
         var ibox = $(this).closest('div.ibox');
         var button = $(this).find('i');
-        var content = ibox.children('.ibox-content');
+        var content = ibox.find('div.ibox-content');
         content.slideToggle(200);
         button.toggleClass('fa-chevron-up').toggleClass('fa-chevron-down');
         ibox.toggleClass('').toggleClass('border-bottom');
@@ -118,25 +119,25 @@ $(document).ready(function () {
 
     // Full height of sidebar
     function fix_height() {
-        var heightWithoutNavbar = $("body > #wrapper").height() - 61;
-        $(".sidebar-panel").css("min-height", heightWithoutNavbar + "px");
+        var heightWithoutNavbar = $("body > #wrapper").height() - 51;
+        $(".sidebard-panel").css("min-height", heightWithoutNavbar + "px");
 
-        var navbarheight = $('nav.navbar-default').height();
-        var wrapperHeight = $('#page-wrapper').height();
+        var navbarHeigh = $('nav.navbar-default').height();
+        var wrapperHeigh = $('#page-wrapper').height();
 
-        if (navbarheight > wrapperHeight) {
-            $('#page-wrapper').css("min-height", navbarheight + "px");
+        if (navbarHeigh > wrapperHeigh) {
+            $('#page-wrapper').css("min-height", navbarHeigh + "px");
         }
 
-        if (navbarheight < wrapperHeight) {
+        if (navbarHeigh < wrapperHeigh) {
             $('#page-wrapper').css("min-height", $(window).height() + "px");
         }
 
         if ($('body').hasClass('fixed-nav')) {
-            if (navbarheight > wrapperHeight) {
-                $('#page-wrapper').css("min-height", navbarheight + "px");
+            if (navbarHeigh > wrapperHeigh) {
+                $('#page-wrapper').css("min-height", navbarHeigh + "px");
             } else {
-                $('#page-wrapper').css("min-height", $(window).height() - 60 + "px");
+                $('#page-wrapper').css("min-height", $(window).height() - 50 + "px");
             }
         }
 
@@ -176,6 +177,10 @@ $(document).ready(function () {
     $('.full-height-scroll').slimscroll({
         height: '100%'
     })
+
+    $('.profile-element, .logo-element').on("click", function () {
+        window.location = "/Usuarios/Panel";
+    });
 });
 
 

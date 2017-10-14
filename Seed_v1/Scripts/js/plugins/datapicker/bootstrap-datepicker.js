@@ -103,10 +103,18 @@
 		this._attachEvents();
 
 		if (this.isInline){
-			this.picker.addClass('datepicker-inline').appendTo(this.element);
+		    this.picker.addClass('datepicker-inline').appendTo(this.element);
+            
+		    if (this.hasInput) {
+		        this.picker.attr('id', this.element.find('input').attr('id'));
+		    }
 		}
 		else {
-			this.picker.addClass('datepicker-dropdown dropdown-menu');
+		    this.picker.addClass('datepicker-dropdown dropdown-menu');
+
+		    if (this.hasInput) {
+		        this.picker.attr('id', this.element.find('input').attr('id'));
+		    }
 		}
 
 		if (this.o.rtl){
@@ -1017,7 +1025,7 @@
 			if (!date){
 				this.dates.clear();
 			}
-			else if (ix !== -1){
+			else if (ix !== -1 && this.o.allowDeselection){
 				this.dates.remove(ix);
 			}
 			else {
@@ -1389,6 +1397,7 @@
 	};
 
 	var defaults = $.fn.datepicker.defaults = {
+        allowDeselection: false,
 		autoclose: false,
 		beforeShowDay: $.noop,
 		calendarWeeks: false,
@@ -1398,7 +1407,7 @@
 		forceParse: true,
 		format: 'mm/dd/yyyy',
 		keyboardNavigation: true,
-		language: 'en',
+		language: 'es',
 		minViewMode: 0,
 		multidate: false,
 		multidateSeparator: ',',
@@ -1425,6 +1434,15 @@
 			monthsShort: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
 			today: "Today",
 			clear: "Clear"
+		},
+		es: {
+		    days: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"],
+		    daysShort: ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab", "Dom"],
+		    daysMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa", "Do"],
+		    months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+		    monthsShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+		    today: "Hoy",
+		    clear: "Limpiar"
 		}
 	};
 
