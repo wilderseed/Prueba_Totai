@@ -1,0 +1,1263 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SISTEMAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+          <Property Name="User_Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar(max)" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="Discriminator" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Empresa">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DBName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="DBContext" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Estado" Type="int" Nullable="false" />
+          <Property Name="UsuaReg" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaReg" Type="datetime" Nullable="false" />
+          <Property Name="UsuaModif" Type="nvarchar" MaxLength="50" />
+          <Property Name="FechaModif" Type="datetime" />
+          <Property Name="IdPersona" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PersonaBase">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CI" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="NIT" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Apellido" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Direccion" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="SitioWeb" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Tipo" Type="int" Nullable="false" />
+          <Property Name="Estado" Type="int" Nullable="false" />
+          <Property Name="UsuaReg" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaReg" Type="datetime" Nullable="false" />
+          <Property Name="UsuaModif" Type="nvarchar" MaxLength="50" />
+          <Property Name="FechaModif" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PersonaBaseEmail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Posicion" Type="int" Nullable="false" />
+          <Property Name="IdPersona" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PersonaBaseTelefono">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Posicion" Type="int" Nullable="false" />
+          <Property Name="IdPersona" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Privilegio">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="DirPagina" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="LinkText" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ActionName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ControllerName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nivel" Type="int" Nullable="false" />
+          <Property Name="Estado" Type="int" Nullable="false" />
+          <Property Name="UsuaReg" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaReg" Type="datetime" Nullable="false" />
+          <Property Name="UsuaModif" Type="nvarchar" MaxLength="50" />
+          <Property Name="FechaModif" Type="datetime" />
+          <Property Name="IdRoot" Type="int" />
+        </EntityType>
+        <EntityType Name="Sesion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdAspNetSession" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="TipoBrowser" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Browser" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IpAddress" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserAgent" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ScreenWidth" Type="int" Nullable="false" />
+          <Property Name="ScreenHeight" Type="int" Nullable="false" />
+          <Property Name="IsMobile" Type="bit" Nullable="false" />
+          <Property Name="FechaInicio" Type="datetime" Nullable="false" />
+          <Property Name="FechaFin" Type="datetime" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SesionEmpresa">
+          <Key>
+            <PropertyRef Name="IdSesion" />
+            <PropertyRef Name="IdEmpresa" />
+          </Key>
+          <Property Name="IdSesion" Type="int" Nullable="false" />
+          <Property Name="IdEmpresa" Type="int" Nullable="false" />
+          <Property Name="Activa" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SesionPrivilegio">
+          <Key>
+            <PropertyRef Name="IdSesion" />
+            <PropertyRef Name="IdPrivilegio" />
+          </Key>
+          <Property Name="IdSesion" Type="int" Nullable="false" />
+          <Property Name="IdPrivilegio" Type="int" Nullable="false" />
+          <Property Name="CssClass" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Contrasenia" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Estado" Type="int" Nullable="false" />
+          <Property Name="UsuaReg" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaReg" Type="datetime" Nullable="false" />
+          <Property Name="UsuaModif" Type="nvarchar" MaxLength="50" />
+          <Property Name="FechaModif" Type="datetime" />
+          <Property Name="IdContrasenia" Type="nvarchar" MaxLength="150" />
+          <Property Name="IdAspNetUser" Type="nvarchar" MaxLength="128" />
+          <Property Name="IdPersona" Type="int" />
+        </EntityType>
+        <EntityType Name="UsuarioBitacora">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Operacion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Tipo" Type="int" Nullable="false" />
+          <Property Name="UsuaReg" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaReg" Type="datetime" Nullable="false" />
+          <Property Name="IdAUSession" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="UsuarioEmpresa">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+            <PropertyRef Name="IdEmpresa" />
+          </Key>
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+          <Property Name="IdEmpresa" Type="int" Nullable="false" />
+          <Property Name="Estado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UsuarioPrivilegio">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+            <PropertyRef Name="IdPrivilegio" />
+          </Key>
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+          <Property Name="IdPrivilegio" Type="int" Nullable="false" />
+          <Property Name="Visible" Type="bit" Nullable="false" />
+          <Property Name="Habilitado" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empresa_Persona">
+          <End Role="PersonaBase" Type="Self.PersonaBase" Multiplicity="1" />
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PersonaBase">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Empresa">
+              <PropertyRef Name="IdPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonaEmail_Persona">
+          <End Role="PersonaBase" Type="Self.PersonaBase" Multiplicity="1" />
+          <End Role="PersonaBaseEmail" Type="Self.PersonaBaseEmail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PersonaBase">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PersonaBaseEmail">
+              <PropertyRef Name="IdPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonaTelefono_Persona">
+          <End Role="PersonaBase" Type="Self.PersonaBase" Multiplicity="1" />
+          <End Role="PersonaBaseTelefono" Type="Self.PersonaBaseTelefono" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PersonaBase">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PersonaBaseTelefono">
+              <PropertyRef Name="IdPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sesion_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Sesion" Type="Self.Sesion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sesion">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SesionEmpresa_Empresa">
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="1" />
+          <End Role="SesionEmpresa" Type="Self.SesionEmpresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SesionEmpresa">
+              <PropertyRef Name="IdEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SesionEmpresa_Sesion">
+          <End Role="Sesion" Type="Self.Sesion" Multiplicity="1" />
+          <End Role="SesionEmpresa" Type="Self.SesionEmpresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sesion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SesionEmpresa">
+              <PropertyRef Name="IdSesion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SesionPrivilegio_Privilegio">
+          <End Role="Privilegio" Type="Self.Privilegio" Multiplicity="1" />
+          <End Role="SesionPrivilegio" Type="Self.SesionPrivilegio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Privilegio">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SesionPrivilegio">
+              <PropertyRef Name="IdPrivilegio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SesionPrivilegio_Sesion">
+          <End Role="Sesion" Type="Self.Sesion" Multiplicity="1" />
+          <End Role="SesionPrivilegio" Type="Self.SesionPrivilegio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sesion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SesionPrivilegio">
+              <PropertyRef Name="IdSesion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="IdAspNetUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Persona">
+          <End Role="PersonaBase" Type="Self.PersonaBase" Multiplicity="0..1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PersonaBase">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="IdPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioEmpresa_Empresa">
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="1" />
+          <End Role="UsuarioEmpresa" Type="Self.UsuarioEmpresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsuarioEmpresa">
+              <PropertyRef Name="IdEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioEmpresa_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="UsuarioEmpresa" Type="Self.UsuarioEmpresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsuarioEmpresa">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioPrivilegio_Privilegio">
+          <End Role="Privilegio" Type="Self.Privilegio" Multiplicity="1" />
+          <End Role="UsuarioPrivilegio" Type="Self.UsuarioPrivilegio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Privilegio">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsuarioPrivilegio">
+              <PropertyRef Name="IdPrivilegio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioPrivilegio_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="UsuarioPrivilegio" Type="Self.UsuarioPrivilegio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsuarioPrivilegio">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SISTEMAModelStoreContainer">
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empresa" EntityType="Self.Empresa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonaBase" EntityType="Self.PersonaBase" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonaBaseEmail" EntityType="Self.PersonaBaseEmail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonaBaseTelefono" EntityType="Self.PersonaBaseTelefono" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Privilegio" EntityType="Self.Privilegio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sesion" EntityType="Self.Sesion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SesionEmpresa" EntityType="Self.SesionEmpresa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SesionPrivilegio" EntityType="Self.SesionPrivilegio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsuarioBitacora" EntityType="Self.UsuarioBitacora" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsuarioEmpresa" EntityType="Self.UsuarioEmpresa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsuarioPrivilegio" EntityType="Self.UsuarioPrivilegio" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empresa_Persona" Association="Self.FK_Empresa_Persona">
+            <End Role="PersonaBase" EntitySet="PersonaBase" />
+            <End Role="Empresa" EntitySet="Empresa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonaEmail_Persona" Association="Self.FK_PersonaEmail_Persona">
+            <End Role="PersonaBase" EntitySet="PersonaBase" />
+            <End Role="PersonaBaseEmail" EntitySet="PersonaBaseEmail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonaTelefono_Persona" Association="Self.FK_PersonaTelefono_Persona">
+            <End Role="PersonaBase" EntitySet="PersonaBase" />
+            <End Role="PersonaBaseTelefono" EntitySet="PersonaBaseTelefono" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sesion_Usuario" Association="Self.FK_Sesion_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Sesion" EntitySet="Sesion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SesionEmpresa_Empresa" Association="Self.FK_SesionEmpresa_Empresa">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="SesionEmpresa" EntitySet="SesionEmpresa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SesionEmpresa_Sesion" Association="Self.FK_SesionEmpresa_Sesion">
+            <End Role="Sesion" EntitySet="Sesion" />
+            <End Role="SesionEmpresa" EntitySet="SesionEmpresa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SesionPrivilegio_Privilegio" Association="Self.FK_SesionPrivilegio_Privilegio">
+            <End Role="Privilegio" EntitySet="Privilegio" />
+            <End Role="SesionPrivilegio" EntitySet="SesionPrivilegio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SesionPrivilegio_Sesion" Association="Self.FK_SesionPrivilegio_Sesion">
+            <End Role="Sesion" EntitySet="Sesion" />
+            <End Role="SesionPrivilegio" EntitySet="SesionPrivilegio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_AspNetUsers" Association="Self.FK_Usuario_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Persona" Association="Self.FK_Usuario_Persona">
+            <End Role="PersonaBase" EntitySet="PersonaBase" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioEmpresa_Empresa" Association="Self.FK_UsuarioEmpresa_Empresa">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="UsuarioEmpresa" EntitySet="UsuarioEmpresa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioEmpresa_Usuario" Association="Self.FK_UsuarioEmpresa_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="UsuarioEmpresa" EntitySet="UsuarioEmpresa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioPrivilegio_Privilegio" Association="Self.FK_UsuarioPrivilegio_Privilegio">
+            <End Role="Privilegio" EntitySet="Privilegio" />
+            <End Role="UsuarioPrivilegio" EntitySet="UsuarioPrivilegio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioPrivilegio_Usuario" Association="Self.FK_UsuarioPrivilegio_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="UsuarioPrivilegio" EntitySet="UsuarioPrivilegio" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SISTEMAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="User_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+          </Key>
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Discriminator" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+          <NavigationProperty Name="Usuario" Relationship="SISTEMAModel.FK_Usuario_AspNetUsers" FromRole="AspNetUsers" ToRole="Usuario" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="SISTEMAEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="Empresa" EntityType="SISTEMAModel.Empresa" />
+          <EntitySet Name="Privilegio" EntityType="SISTEMAModel.Privilegio" />
+          <EntitySet Name="Sesion" EntityType="SISTEMAModel.Sesion" />
+          <EntitySet Name="SesionEmpresa" EntityType="SISTEMAModel.SesionEmpresa" />
+          <EntitySet Name="SesionPrivilegio" EntityType="SISTEMAModel.SesionPrivilegio" />
+          <EntitySet Name="Usuario" EntityType="SISTEMAModel.Usuario" />
+          <EntitySet Name="UsuarioBitacora" EntityType="SISTEMAModel.UsuarioBitacora" />
+          <EntitySet Name="UsuarioEmpresa" EntityType="SISTEMAModel.UsuarioEmpresa" />
+          <EntitySet Name="UsuarioPrivilegio" EntityType="SISTEMAModel.UsuarioPrivilegio" />
+          <AssociationSet Name="FK_Usuario_AspNetUsers" Association="SISTEMAModel.FK_Usuario_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SesionEmpresa_Empresa" Association="SISTEMAModel.FK_SesionEmpresa_Empresa">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="SesionEmpresa" EntitySet="SesionEmpresa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioEmpresa_Empresa" Association="SISTEMAModel.FK_UsuarioEmpresa_Empresa">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="UsuarioEmpresa" EntitySet="UsuarioEmpresa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SesionPrivilegio_Privilegio" Association="SISTEMAModel.FK_SesionPrivilegio_Privilegio">
+            <End Role="Privilegio" EntitySet="Privilegio" />
+            <End Role="SesionPrivilegio" EntitySet="SesionPrivilegio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioPrivilegio_Privilegio" Association="SISTEMAModel.FK_UsuarioPrivilegio_Privilegio">
+            <End Role="Privilegio" EntitySet="Privilegio" />
+            <End Role="UsuarioPrivilegio" EntitySet="UsuarioPrivilegio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sesion_Usuario" Association="SISTEMAModel.FK_Sesion_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Sesion" EntitySet="Sesion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SesionEmpresa_Sesion" Association="SISTEMAModel.FK_SesionEmpresa_Sesion">
+            <End Role="Sesion" EntitySet="Sesion" />
+            <End Role="SesionEmpresa" EntitySet="SesionEmpresa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SesionPrivilegio_Sesion" Association="SISTEMAModel.FK_SesionPrivilegio_Sesion">
+            <End Role="Sesion" EntitySet="Sesion" />
+            <End Role="SesionPrivilegio" EntitySet="SesionPrivilegio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioEmpresa_Usuario" Association="SISTEMAModel.FK_UsuarioEmpresa_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="UsuarioEmpresa" EntitySet="UsuarioEmpresa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioPrivilegio_Usuario" Association="SISTEMAModel.FK_UsuarioPrivilegio_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="UsuarioPrivilegio" EntitySet="UsuarioPrivilegio" />
+          </AssociationSet>
+          <EntitySet Name="PersonaBase" EntityType="SISTEMAModel.PersonaBase" />
+          <EntitySet Name="PersonaBaseEmail" EntityType="SISTEMAModel.PersonaBaseEmail" />
+          <EntitySet Name="PersonaBaseTelefono" EntityType="SISTEMAModel.PersonaBaseTelefono" />
+          <AssociationSet Name="FK_Empresa_Persona" Association="SISTEMAModel.FK_Empresa_Persona">
+            <End Role="PersonaBase" EntitySet="PersonaBase" />
+            <End Role="Empresa" EntitySet="Empresa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonaEmail_Persona" Association="SISTEMAModel.FK_PersonaEmail_Persona">
+            <End Role="PersonaBase" EntitySet="PersonaBase" />
+            <End Role="PersonaBaseEmail" EntitySet="PersonaBaseEmail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonaTelefono_Persona" Association="SISTEMAModel.FK_PersonaTelefono_Persona">
+            <End Role="PersonaBase" EntitySet="PersonaBase" />
+            <End Role="PersonaBaseTelefono" EntitySet="PersonaBaseTelefono" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Persona" Association="SISTEMAModel.FK_Usuario_Persona">
+            <End Role="PersonaBase" EntitySet="PersonaBase" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Empresa">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DBName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DBContext" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Estado" Type="Int32" Nullable="false" />
+          <Property Name="UsuaReg" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaReg" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UsuaModif" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaModif" Type="DateTime" Precision="3" />
+          <Property Name="IdPersona" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SesionEmpresa" Relationship="SISTEMAModel.FK_SesionEmpresa_Empresa" FromRole="Empresa" ToRole="SesionEmpresa" />
+          <NavigationProperty Name="UsuarioEmpresa" Relationship="SISTEMAModel.FK_UsuarioEmpresa_Empresa" FromRole="Empresa" ToRole="UsuarioEmpresa" />
+          <NavigationProperty Name="PersonaBase" Relationship="SISTEMAModel.FK_Empresa_Persona" FromRole="Empresa" ToRole="PersonaBase" />
+        </EntityType>
+        <EntityType Name="Privilegio">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="DirPagina" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="LinkText" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ActionName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ControllerName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nivel" Type="Int32" Nullable="false" />
+          <Property Name="Estado" Type="Int32" Nullable="false" />
+          <Property Name="UsuaReg" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaReg" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UsuaModif" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaModif" Type="DateTime" Precision="3" />
+          <Property Name="IdRoot" Type="Int32" />
+          <NavigationProperty Name="SesionPrivilegio" Relationship="SISTEMAModel.FK_SesionPrivilegio_Privilegio" FromRole="Privilegio" ToRole="SesionPrivilegio" />
+          <NavigationProperty Name="UsuarioPrivilegio" Relationship="SISTEMAModel.FK_UsuarioPrivilegio_Privilegio" FromRole="Privilegio" ToRole="UsuarioPrivilegio" />
+        </EntityType>
+        <EntityType Name="Sesion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdAspNetSession" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="TipoBrowser" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Browser" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IpAddress" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserAgent" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ScreenWidth" Type="Int32" Nullable="false" />
+          <Property Name="ScreenHeight" Type="Int32" Nullable="false" />
+          <Property Name="IsMobile" Type="Boolean" Nullable="false" />
+          <Property Name="FechaInicio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaFin" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="SISTEMAModel.FK_Sesion_Usuario" FromRole="Sesion" ToRole="Usuario" />
+          <NavigationProperty Name="SesionEmpresa" Relationship="SISTEMAModel.FK_SesionEmpresa_Sesion" FromRole="Sesion" ToRole="SesionEmpresa" />
+          <NavigationProperty Name="SesionPrivilegio" Relationship="SISTEMAModel.FK_SesionPrivilegio_Sesion" FromRole="Sesion" ToRole="SesionPrivilegio" />
+        </EntityType>
+        <EntityType Name="SesionEmpresa">
+          <Key>
+            <PropertyRef Name="IdSesion" />
+            <PropertyRef Name="IdEmpresa" />
+          </Key>
+          <Property Name="IdSesion" Type="Int32" Nullable="false" />
+          <Property Name="IdEmpresa" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Empresa" Relationship="SISTEMAModel.FK_SesionEmpresa_Empresa" FromRole="SesionEmpresa" ToRole="Empresa" />
+          <NavigationProperty Name="Sesion" Relationship="SISTEMAModel.FK_SesionEmpresa_Sesion" FromRole="SesionEmpresa" ToRole="Sesion" />
+          <Property Name="Activa" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SesionPrivilegio">
+          <Key>
+            <PropertyRef Name="IdSesion" />
+            <PropertyRef Name="IdPrivilegio" />
+          </Key>
+          <Property Name="IdSesion" Type="Int32" Nullable="false" />
+          <Property Name="IdPrivilegio" Type="Int32" Nullable="false" />
+          <Property Name="CssClass" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Privilegio" Relationship="SISTEMAModel.FK_SesionPrivilegio_Privilegio" FromRole="SesionPrivilegio" ToRole="Privilegio" />
+          <NavigationProperty Name="Sesion" Relationship="SISTEMAModel.FK_SesionPrivilegio_Sesion" FromRole="SesionPrivilegio" ToRole="Sesion" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Contrasenia" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Estado" Type="Int32" Nullable="false" />
+          <Property Name="UsuaReg" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaReg" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UsuaModif" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaModif" Type="DateTime" Precision="3" />
+          <Property Name="IdContrasenia" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="IdAspNetUser" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="IdPersona" Type="Int32" />
+          <NavigationProperty Name="AspNetUsers" Relationship="SISTEMAModel.FK_Usuario_AspNetUsers" FromRole="Usuario" ToRole="AspNetUsers" />
+          <NavigationProperty Name="Sesion" Relationship="SISTEMAModel.FK_Sesion_Usuario" FromRole="Usuario" ToRole="Sesion" />
+          <NavigationProperty Name="UsuarioEmpresa" Relationship="SISTEMAModel.FK_UsuarioEmpresa_Usuario" FromRole="Usuario" ToRole="UsuarioEmpresa" />
+          <NavigationProperty Name="UsuarioPrivilegio" Relationship="SISTEMAModel.FK_UsuarioPrivilegio_Usuario" FromRole="Usuario" ToRole="UsuarioPrivilegio" />
+          <NavigationProperty Name="PersonaBase" Relationship="SISTEMAModel.FK_Usuario_Persona" FromRole="Usuario" ToRole="PersonaBase" />
+        </EntityType>
+        <EntityType Name="UsuarioBitacora">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Operacion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Tipo" Type="Int32" Nullable="false" />
+          <Property Name="UsuaReg" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaReg" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IdAUSession" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UsuarioEmpresa">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+            <PropertyRef Name="IdEmpresa" />
+          </Key>
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <Property Name="IdEmpresa" Type="Int32" Nullable="false" />
+          <Property Name="Estado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Empresa" Relationship="SISTEMAModel.FK_UsuarioEmpresa_Empresa" FromRole="UsuarioEmpresa" ToRole="Empresa" />
+          <NavigationProperty Name="Usuario" Relationship="SISTEMAModel.FK_UsuarioEmpresa_Usuario" FromRole="UsuarioEmpresa" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="UsuarioPrivilegio">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+            <PropertyRef Name="IdPrivilegio" />
+          </Key>
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <Property Name="IdPrivilegio" Type="Int32" Nullable="false" />
+          <Property Name="Visible" Type="Boolean" Nullable="false" />
+          <Property Name="Habilitado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Privilegio" Relationship="SISTEMAModel.FK_UsuarioPrivilegio_Privilegio" FromRole="UsuarioPrivilegio" ToRole="Privilegio" />
+          <NavigationProperty Name="Usuario" Relationship="SISTEMAModel.FK_UsuarioPrivilegio_Usuario" FromRole="UsuarioPrivilegio" ToRole="Usuario" />
+        </EntityType>
+        <Association Name="FK_Usuario_AspNetUsers">
+          <End Type="SISTEMAModel.AspNetUsers" Role="AspNetUsers" Multiplicity="0..1" />
+          <End Type="SISTEMAModel.Usuario" Role="Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="IdAspNetUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SesionEmpresa_Empresa">
+          <End Type="SISTEMAModel.Empresa" Role="Empresa" Multiplicity="1" />
+          <End Type="SISTEMAModel.SesionEmpresa" Role="SesionEmpresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SesionEmpresa">
+              <PropertyRef Name="IdEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioEmpresa_Empresa">
+          <End Type="SISTEMAModel.Empresa" Role="Empresa" Multiplicity="1" />
+          <End Type="SISTEMAModel.UsuarioEmpresa" Role="UsuarioEmpresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsuarioEmpresa">
+              <PropertyRef Name="IdEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SesionPrivilegio_Privilegio">
+          <End Type="SISTEMAModel.Privilegio" Role="Privilegio" Multiplicity="1" />
+          <End Type="SISTEMAModel.SesionPrivilegio" Role="SesionPrivilegio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Privilegio">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SesionPrivilegio">
+              <PropertyRef Name="IdPrivilegio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioPrivilegio_Privilegio">
+          <End Type="SISTEMAModel.Privilegio" Role="Privilegio" Multiplicity="1" />
+          <End Type="SISTEMAModel.UsuarioPrivilegio" Role="UsuarioPrivilegio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Privilegio">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsuarioPrivilegio">
+              <PropertyRef Name="IdPrivilegio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sesion_Usuario">
+          <End Type="SISTEMAModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="SISTEMAModel.Sesion" Role="Sesion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sesion">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SesionEmpresa_Sesion">
+          <End Type="SISTEMAModel.Sesion" Role="Sesion" Multiplicity="1" />
+          <End Type="SISTEMAModel.SesionEmpresa" Role="SesionEmpresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sesion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SesionEmpresa">
+              <PropertyRef Name="IdSesion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SesionPrivilegio_Sesion">
+          <End Type="SISTEMAModel.Sesion" Role="Sesion" Multiplicity="1" />
+          <End Type="SISTEMAModel.SesionPrivilegio" Role="SesionPrivilegio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sesion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SesionPrivilegio">
+              <PropertyRef Name="IdSesion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioEmpresa_Usuario">
+          <End Type="SISTEMAModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="SISTEMAModel.UsuarioEmpresa" Role="UsuarioEmpresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsuarioEmpresa">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioPrivilegio_Usuario">
+          <End Type="SISTEMAModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="SISTEMAModel.UsuarioPrivilegio" Role="UsuarioPrivilegio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsuarioPrivilegio">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PersonaBase">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CI" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="NIT" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Apellido" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Direccion" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="SitioWeb" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Tipo" Type="Int32" Nullable="false" />
+          <Property Name="Estado" Type="Int32" Nullable="false" />
+          <Property Name="UsuaReg" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaReg" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UsuaModif" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaModif" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Empresa" Relationship="SISTEMAModel.FK_Empresa_Persona" FromRole="PersonaBase" ToRole="Empresa" />
+          <NavigationProperty Name="PersonaBaseEmail" Relationship="SISTEMAModel.FK_PersonaEmail_Persona" FromRole="PersonaBase" ToRole="PersonaBaseEmail" />
+          <NavigationProperty Name="PersonaBaseTelefono" Relationship="SISTEMAModel.FK_PersonaTelefono_Persona" FromRole="PersonaBase" ToRole="PersonaBaseTelefono" />
+          <NavigationProperty Name="Usuario" Relationship="SISTEMAModel.FK_Usuario_Persona" FromRole="PersonaBase" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="PersonaBaseEmail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Posicion" Type="Int32" Nullable="false" />
+          <Property Name="IdPersona" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PersonaBase" Relationship="SISTEMAModel.FK_PersonaEmail_Persona" FromRole="PersonaBaseEmail" ToRole="PersonaBase" />
+        </EntityType>
+        <EntityType Name="PersonaBaseTelefono">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Telefono" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Posicion" Type="Int32" Nullable="false" />
+          <Property Name="IdPersona" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PersonaBase" Relationship="SISTEMAModel.FK_PersonaTelefono_Persona" FromRole="PersonaBaseTelefono" ToRole="PersonaBase" />
+        </EntityType>
+        <Association Name="FK_Empresa_Persona">
+          <End Type="SISTEMAModel.PersonaBase" Role="PersonaBase" Multiplicity="1" />
+          <End Type="SISTEMAModel.Empresa" Role="Empresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PersonaBase">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Empresa">
+              <PropertyRef Name="IdPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonaEmail_Persona">
+          <End Type="SISTEMAModel.PersonaBase" Role="PersonaBase" Multiplicity="1" />
+          <End Type="SISTEMAModel.PersonaBaseEmail" Role="PersonaBaseEmail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PersonaBase">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PersonaBaseEmail">
+              <PropertyRef Name="IdPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonaTelefono_Persona">
+          <End Type="SISTEMAModel.PersonaBase" Role="PersonaBase" Multiplicity="1" />
+          <End Type="SISTEMAModel.PersonaBaseTelefono" Role="PersonaBaseTelefono" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PersonaBase">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PersonaBaseTelefono">
+              <PropertyRef Name="IdPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Persona">
+          <End Type="SISTEMAModel.PersonaBase" Role="PersonaBase" Multiplicity="0..1" />
+          <End Type="SISTEMAModel.Usuario" Role="Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PersonaBase">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="IdPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SISTEMAModelStoreContainer" CdmEntityContainer="SISTEMAEntities">
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="SISTEMAModel.AspNetRoles">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="SISTEMAModel.AspNetUserClaims">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="SISTEMAModel.AspNetUserLogins">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="SISTEMAModel.AspNetUsers">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="SISTEMAModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Empresa">
+            <EntityTypeMapping TypeName="SISTEMAModel.Empresa">
+              <MappingFragment StoreEntitySet="Empresa">
+                <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+                <ScalarProperty Name="FechaModif" ColumnName="FechaModif" />
+                <ScalarProperty Name="UsuaModif" ColumnName="UsuaModif" />
+                <ScalarProperty Name="FechaReg" ColumnName="FechaReg" />
+                <ScalarProperty Name="UsuaReg" ColumnName="UsuaReg" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="DBContext" ColumnName="DBContext" />
+                <ScalarProperty Name="DBName" ColumnName="DBName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Privilegio">
+            <EntityTypeMapping TypeName="SISTEMAModel.Privilegio">
+              <MappingFragment StoreEntitySet="Privilegio">
+                <ScalarProperty Name="IdRoot" ColumnName="IdRoot" />
+                <ScalarProperty Name="FechaModif" ColumnName="FechaModif" />
+                <ScalarProperty Name="UsuaModif" ColumnName="UsuaModif" />
+                <ScalarProperty Name="FechaReg" ColumnName="FechaReg" />
+                <ScalarProperty Name="UsuaReg" ColumnName="UsuaReg" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Nivel" ColumnName="Nivel" />
+                <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+                <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+                <ScalarProperty Name="LinkText" ColumnName="LinkText" />
+                <ScalarProperty Name="DirPagina" ColumnName="DirPagina" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sesion">
+            <EntityTypeMapping TypeName="SISTEMAModel.Sesion">
+              <MappingFragment StoreEntitySet="Sesion">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="IsMobile" ColumnName="IsMobile" />
+                <ScalarProperty Name="ScreenHeight" ColumnName="ScreenHeight" />
+                <ScalarProperty Name="ScreenWidth" ColumnName="ScreenWidth" />
+                <ScalarProperty Name="UserAgent" ColumnName="UserAgent" />
+                <ScalarProperty Name="IpAddress" ColumnName="IpAddress" />
+                <ScalarProperty Name="Browser" ColumnName="Browser" />
+                <ScalarProperty Name="TipoBrowser" ColumnName="TipoBrowser" />
+                <ScalarProperty Name="IdAspNetSession" ColumnName="IdAspNetSession" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SesionEmpresa">
+            <EntityTypeMapping TypeName="SISTEMAModel.SesionEmpresa">
+              <MappingFragment StoreEntitySet="SesionEmpresa">
+                <ScalarProperty Name="Activa" ColumnName="Activa" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+                <ScalarProperty Name="IdSesion" ColumnName="IdSesion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SesionPrivilegio">
+            <EntityTypeMapping TypeName="SISTEMAModel.SesionPrivilegio">
+              <MappingFragment StoreEntitySet="SesionPrivilegio">
+                <ScalarProperty Name="CssClass" ColumnName="CssClass" />
+                <ScalarProperty Name="IdPrivilegio" ColumnName="IdPrivilegio" />
+                <ScalarProperty Name="IdSesion" ColumnName="IdSesion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="SISTEMAModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+                <ScalarProperty Name="IdAspNetUser" ColumnName="IdAspNetUser" />
+                <ScalarProperty Name="IdContrasenia" ColumnName="IdContrasenia" />
+                <ScalarProperty Name="FechaModif" ColumnName="FechaModif" />
+                <ScalarProperty Name="UsuaModif" ColumnName="UsuaModif" />
+                <ScalarProperty Name="FechaReg" ColumnName="FechaReg" />
+                <ScalarProperty Name="UsuaReg" ColumnName="UsuaReg" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Contrasenia" ColumnName="Contrasenia" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsuarioBitacora">
+            <EntityTypeMapping TypeName="SISTEMAModel.UsuarioBitacora">
+              <MappingFragment StoreEntitySet="UsuarioBitacora">
+                <ScalarProperty Name="IdAUSession" ColumnName="IdAUSession" />
+                <ScalarProperty Name="FechaReg" ColumnName="FechaReg" />
+                <ScalarProperty Name="UsuaReg" ColumnName="UsuaReg" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Operacion" ColumnName="Operacion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsuarioEmpresa">
+            <EntityTypeMapping TypeName="SISTEMAModel.UsuarioEmpresa">
+              <MappingFragment StoreEntitySet="UsuarioEmpresa">
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsuarioPrivilegio">
+            <EntityTypeMapping TypeName="SISTEMAModel.UsuarioPrivilegio">
+              <MappingFragment StoreEntitySet="UsuarioPrivilegio">
+                <ScalarProperty Name="Habilitado" ColumnName="Habilitado" />
+                <ScalarProperty Name="Visible" ColumnName="Visible" />
+                <ScalarProperty Name="IdPrivilegio" ColumnName="IdPrivilegio" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonaBase">
+            <EntityTypeMapping TypeName="SISTEMAModel.PersonaBase">
+              <MappingFragment StoreEntitySet="PersonaBase">
+                <ScalarProperty Name="FechaModif" ColumnName="FechaModif" />
+                <ScalarProperty Name="UsuaModif" ColumnName="UsuaModif" />
+                <ScalarProperty Name="FechaReg" ColumnName="FechaReg" />
+                <ScalarProperty Name="UsuaReg" ColumnName="UsuaReg" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="SitioWeb" ColumnName="SitioWeb" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="NIT" ColumnName="NIT" />
+                <ScalarProperty Name="CI" ColumnName="CI" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonaBaseEmail">
+            <EntityTypeMapping TypeName="SISTEMAModel.PersonaBaseEmail">
+              <MappingFragment StoreEntitySet="PersonaBaseEmail">
+                <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+                <ScalarProperty Name="Posicion" ColumnName="Posicion" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonaBaseTelefono">
+            <EntityTypeMapping TypeName="SISTEMAModel.PersonaBaseTelefono">
+              <MappingFragment StoreEntitySet="PersonaBaseTelefono">
+                <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+                <ScalarProperty Name="Posicion" ColumnName="Posicion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

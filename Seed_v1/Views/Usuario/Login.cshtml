@@ -1,0 +1,116 @@
+﻿@using Seed_v1.Models
+@model UsrLoginViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SEED</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/images/app/favicon.ico" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="~/Content/css/animate.css" rel="stylesheet">
+    <link href="~/Content/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="~/Content/css/style.css" rel="stylesheet">
+
+    <style>
+        body {
+            overflow: auto;
+            height: 100%;
+        }
+
+            body::-webkit-scrollbar {
+                width: 8px;
+                height: 8px;
+                background-color: inherit;
+            }
+
+            body::-webkit-scrollbar-thumb {
+                background-color: #999c9e;
+                border-radius: 3px;
+            }
+    </style>
+</head>
+<body class="gray-bg">
+    <div class="middle-box text-center loginscreen animated fadeInDown">
+        <div class="row">
+            <span style="font-size: 48px"><strong>SEED</strong></span>
+        </div>
+        <div class="row">
+            <div class="col-lg-12" style="margin-bottom: 3px">
+                @Html.TextBoxFor(m => m.Empresa, new { @id = "txbEmpresa", @class = "form-control", @placeholder = "Organización", @title = "Organización", @style = "text-transform: uppercase;" })
+                <small>
+                    <b>@Html.Label("valEmpresa", new { @id = "valEmpresa", @style = "display: none; text-align: left; margin-left: 5px; color: #cc5965;" })</b>
+                </small>
+            </div>
+            <div class="col-lg-12" style="margin-bottom: 3px">
+                @Html.TextBoxFor(m => m.Nombre, new { @id = "txbNombre", @class = "form-control", @placeholder = "Usuario", @title = "Usuario", @style = "text-transform: lowercase;" })
+                <small>
+                    <b>@Html.Label("valNombre", new { @id = "valNombre", @style = "display: none; text-align: left; margin-left: 5px; color: #cc5965;" })</b>
+                </small>
+            </div>
+            <div class="col-lg-12" style="margin-bottom: 3px">
+                <div class="input-group">
+                    @Html.TextBoxFor(m => m.Contrasenia, new { @id = "txbContrasenia", @class = "form-control", @placeholder = "Contraseña", @type = "password", @title = "Contraseña" })
+                    <span id="spnContrasenia" class="input-group-addon" style="background-color: #1ab394; color: #ffffff; font-size: 10px; font-weight: bold; cursor: pointer" onclick="actionPassword('Contrasenia')">MOSTRAR</span>
+                </div>
+                <small>
+                    <b>@Html.Label("valContrasenia", new { @id = "valContrasenia", @style = "display: none; text-align: left; margin-left: 5px; color: #cc5965;" })</b>
+                </small>
+            </div>
+        </div>
+        <div id="alert-messages" class="row" style="display: none">
+            <div class="col-lg-12" style="margin-bottom: 3px">
+                <div class="alert alert-danger">
+                    <small>
+                        <b>@Html.Label("lblMensaje", new { @id = "lblMensaje" })</b>
+                    </small>
+                </div>
+            </div>
+        </div>
+        <div id="process-messages" class="row" style="display: none">
+            <div class="col-lg-12" style="margin-bottom: 3px">
+                <div class="alert" style="color: #676a6c; background: #f5f5f6">
+                    <i class="fa fa-2x fa-spin fa-spinner"></i>
+                    <b>@Html.Label("lblMensaje2", new { @id = "lblMensaje2" })</b>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="btn-group col-lg-12" style="margin: 3px 0 3px">
+                <button class="btn-sm btn-primary" style="width: 100%" onclick="loginUsuario('@Model.ReturnUrl')">Iniciar Sesión</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mainly scripts -->
+    <script src="~/Scripts/js/jquery-2.1.1.js"></script>
+    <script src="~/Scripts/js/bootstrap.min.js"></script>
+
+    <script src="~/Scripts/js/app/usuario/login.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#txbEmpresa, #txbNombre, #txbContrasenia").on("keydown", function (e) {
+                var event = e || window.event;
+                var charCode = event.keyCode || event.which;
+
+                if (charCode == 13) {
+                    loginUsuario('@Model.ReturnUrl');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

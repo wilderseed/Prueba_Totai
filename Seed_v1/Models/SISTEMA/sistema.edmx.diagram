@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b617aaeca0d540ebbb2876756a6437bf" Name="Diagram1">
+        <EntityTypeShape EntityType="SISTEMAModel.AspNetRoles" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISTEMAModel.AspNetUserClaims" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISTEMAModel.AspNetUserLogins" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISTEMAModel.AspNetUsers" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <AssociationConnector Association="SISTEMAModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="SISTEMAModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="SISTEMAModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SISTEMAModel.Empresa" Width="1.5" PointX="3" PointY="19.75" />
+        <EntityTypeShape EntityType="SISTEMAModel.Privilegio" Width="1.5" PointX="5.625" PointY="14.375" />
+        <EntityTypeShape EntityType="SISTEMAModel.Sesion" Width="1.5" PointX="7.875" PointY="9.375" />
+        <EntityTypeShape EntityType="SISTEMAModel.SesionEmpresa" Width="1.5" PointX="5.25" PointY="20.5" />
+        <EntityTypeShape EntityType="SISTEMAModel.SesionPrivilegio" Width="1.5" PointX="10.125" PointY="10.25" />
+        <EntityTypeShape EntityType="SISTEMAModel.Usuario" Width="1.5" PointX="5.625" PointY="8.375" />
+        <EntityTypeShape EntityType="SISTEMAModel.UsuarioBitacora" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="SISTEMAModel.UsuarioEmpresa" Width="1.5" PointX="7.875" PointY="14.75" />
+        <EntityTypeShape EntityType="SISTEMAModel.UsuarioPrivilegio" Width="1.5" PointX="7.875" PointY="6.25" />
+        <AssociationConnector Association="SISTEMAModel.FK_Usuario_AspNetUsers" />
+        <AssociationConnector Association="SISTEMAModel.FK_SesionEmpresa_Empresa" />
+        <AssociationConnector Association="SISTEMAModel.FK_UsuarioEmpresa_Empresa" />
+        <AssociationConnector Association="SISTEMAModel.FK_SesionPrivilegio_Privilegio" />
+        <AssociationConnector Association="SISTEMAModel.FK_UsuarioPrivilegio_Privilegio" />
+        <AssociationConnector Association="SISTEMAModel.FK_Sesion_Usuario" />
+        <AssociationConnector Association="SISTEMAModel.FK_SesionEmpresa_Sesion" />
+        <AssociationConnector Association="SISTEMAModel.FK_SesionPrivilegio_Sesion" />
+        <AssociationConnector Association="SISTEMAModel.FK_UsuarioEmpresa_Usuario" />
+        <AssociationConnector Association="SISTEMAModel.FK_UsuarioPrivilegio_Usuario" />
+        <EntityTypeShape EntityType="SISTEMAModel.PersonaBase" Width="1.5" PointX="0.75" PointY="13.625" />
+        <EntityTypeShape EntityType="SISTEMAModel.PersonaBaseEmail" Width="1.5" PointX="3" PointY="13.375" />
+        <EntityTypeShape EntityType="SISTEMAModel.PersonaBaseTelefono" Width="1.5" PointX="3" PointY="16.125" />
+        <AssociationConnector Association="SISTEMAModel.FK_Empresa_Persona" />
+        <AssociationConnector Association="SISTEMAModel.FK_PersonaEmail_Persona" />
+        <AssociationConnector Association="SISTEMAModel.FK_PersonaTelefono_Persona" />
+        <AssociationConnector Association="SISTEMAModel.FK_Usuario_Persona" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
